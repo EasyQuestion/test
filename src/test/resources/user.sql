@@ -1,0 +1,1 @@
+SELECT userId,userName FROM t_user WHERE userId='1';
