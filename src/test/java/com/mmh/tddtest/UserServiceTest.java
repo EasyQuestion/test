@@ -8,6 +8,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -17,6 +22,12 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author mumh@2423528736@qq.com
  * @date 2019/4/23 17:25
  */
+//@SpringBootTest
+//@RunWith(PowerMockRunner.class)
+//@PowerMockRunnerDelegate(SpringRunner.class)
+//@PrepareForTest({ExcelPoiUtils.class})
+//@PowerMockIgnore({"javax.management.*", "javax.net.ssl.*"})
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceTest {
@@ -52,5 +63,13 @@ public class UserServiceTest {
             }
         });
         Assert.assertEquals(1,userService.saveUser(user1));
+
+
+//        PowerMockito.mockStatic(ExcelPoiUtils.class);
+//        PowerMockito.when(ExcelPoiUtils.getExcelData(Mockito.anyString(),Mockito.any())).thenReturn(excelData);
+
     }
+
+
+
 }

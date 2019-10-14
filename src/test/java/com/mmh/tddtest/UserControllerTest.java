@@ -9,9 +9,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,4 +48,22 @@ public class UserControllerTest {
                 .andReturn();
         Mockito.verify(userService, Mockito.times(1)).saveUser(Mockito.any());
     }
+
+    /*@Test
+    public void uploadProjectExcelTest()throws Exception{
+
+        Mockito.when(projectService.saveProjectByExcel(Mockito.any(),Mockito.anyLong(),Mockito.anyString())).thenReturn(ResultUtils.returnSuccess(null));
+
+        MockMultipartFile fileMock = new MockMultipartFile("file", "filename.xls", "text/plain", "some xml".getBytes());
+        MockMultipartFile fileMock2 = new MockMultipartFile("file", "filename.xls", "text/plain", "some xml".getBytes());
+
+        String regionId = "2";
+        mockMvc.perform(multipart("/api/v1/upload-project").file(fileMock).file(fileMock2)
+                .header("Authorization",token)
+                .param("regionId",regionId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("code").value(ResultConstant.SUCCESS))
+                .andReturn();
+        Mockito.verify(projectService, Mockito.times(1)).saveProjectByExcel(Mockito.any(),Mockito.anyLong(),Mockito.anyString());
+    }*/
 }
